@@ -1,0 +1,55 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="../../style.css" rel="stylesheet" type="text/css" media="screen" />
+</head>
+<body style="padding:13px">
+<pre>
+
+<a href="index.html" target="main">🡨</a>
+<span class="title">準備第三方函式庫</span><hr class="top">體積小的第三方函式庫已經收錄在 <span class="meta">ToyBox/extlibs</span> 裡面了
+CMake 會負責處理
+其他檔案龐大，或者難以融入 CMake 體系的第三方函式庫就請自行準備了
+
+此文件有列出你該自行準備的第三方函式庫
+ToyBox/extlibs/readme.md
+
+然後將你自訂的路徑更新到這份 CMake 文件上(閱讀這文件已經足夠讓你搞清楚該如何設定了)
+ToyBox/cmake/toy_SetThirdPartyLibraryPath.cmake
+
+我以前編譯過的 library 放在這裡，請參考，也許有適合你的檔案
+https://github.com/ToyAuthor/ToyBoxSDK
+
+
+
+<span class="sub-title">boost</span><hr>其中 boost 的情況比較特別點
+我將需要的 source code 放進 <span class="meta">ToyBox/extlibs/boost</span> 了
+CMake 會負責編譯
+但是 header 太過於龐大了
+所以沒有收錄在專案裡面
+要請你自己去下載 boost 的 header 了
+然後將自訂的 header 路徑填到那份 CMake 文件上的 TOY_include_boost 變數
+
+可參考此專案，上面的 boost.7z 就是 header
+https://github.com/ToyAuthor/boost_1_60_0
+
+
+
+<span class="sub-title">修改範例</span><hr>如果有個函式庫名字叫做 ccc
+然後標頭檔位置是
+d:/project/include/ccc.h
+
+你編譯好的 library 位置是
+d:/project/lib/ccd.lib
+
+那麼文件上就要這樣修改
+
+set(TOY_include_ccc    "d:/project/include" )
+set(TOY_library_ccc    "d:/project/lib" )
+set(TOY_libname_ccc    "ccd" )
+
+
+
+</pre>
+</body>
+</html>

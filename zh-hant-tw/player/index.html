@@ -1,0 +1,151 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="../../style.css" rel="stylesheet" type="text/css" media="screen" />
+</head>
+<body style="padding:13px">
+<pre>
+
+<span class="title">Lua 腳本語言</span><hr class="top"><span class="term">ToyBox</span>有將 C++ 函式庫給包裝成<span class="term">Lua Module</span>
+這屬於高階包裝，所以靈活度降低、便利性提升
+因此你也能使用<span class="term">Lua</span>來呼叫<span class="term">ToyBox</span>的部分功能
+你需要一個<span class="term">Lua</span>直譯器才能使用<span class="term">Lua Module</span>
+
+
+<span class="sub-title">直譯器</span><hr>你可以使用<span class="term">Lua</span>官方的直譯器
+不過<span class="term">ToyBox</span>有自己建立一個客製化的直譯器-<span class="term">player</span>
+這個<span class="term">player</span>是使用設定檔來決定如何執行任務的
+會比較方便使用
+另外還有個操作更友善的分支版本叫做<span class="term">player-gui</span>
+可以把<span class="term">Lua</span>專案列成清單，顯示在視窗上面
+
+
+<span class="sub-title">player</span><hr>只使用<span class="term">player</span>來開發程式的話
+事情會變的輕鬆且簡約
+但是也要付出代價
+以下是優缺點
+
+<table>
+	<caption>比較表</caption>
+	<thead>
+		<tr>
+			<th></th>
+			<th>Lua(只使用 player)</th>
+			<th>C++</th>
+			<th>結語</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>安裝方式</td>
+			<td>大多數情況下是免安裝程式</td>
+			<td>需要安裝編譯器、CMake，自己配置準備環境</td>
+			<td>C++ 建置環境是真的很麻煩</td>
+		</tr>
+		<tr>
+			<td>靈活度</td>
+			<td>功能很少，也不適合多執行緒寫法</td>
+			<td>你想要的話，可以掌控一切細節</td>
+			<td rowspan="2">便利性與靈活度是互斥的，不可兼得</td>
+		</tr>
+		<tr>
+			<td>方便性</td>
+			<td>介面已經盡可能設計的簡單了</td>
+			<td>你必須自己組裝零件</td>
+		</tr>
+		<tr>
+			<td>語法難度</td>
+			<td>極其精簡的語法，非常容易上手</td>
+			<td>軟體界公認的複雜語言</td>
+			<td>難度差距極大</td>
+		</tr>
+		<tr>
+			<td>程式執行速度</td>
+			<td>Lua 比 C 語言慢個3到10倍左右</td>
+			<td>頂多比 C 語言慢 5 %</td>
+			<td rowspan="2">執行速度與開發速度是互斥的，不可兼得</td>
+		</tr>
+		<tr>
+			<td>程式開發速度</td>
+			<td>腳本語言不需要花時間編譯</td>
+			<td>幾乎是編譯時間最久的語言，需要大量開發時間</td>
+		</tr>
+		<tr>
+			<td colspan="4">※ player 雖然使用速度慢的 Lua，但是搭配的 module 依然是 C++ 寫成的，整體執行速度還是算快的</td>
+		</tr>
+	</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="sub-title">Hello World</span><hr>這是個簡單的範例
+只印出一則訊息
+函式 main 裡面如果發生異常會被 bug.catch 給捕獲
+
+<div class="code"><span class="sc5">local</span><span class="sc0">  </span><span class="sc11">log</span><span class="sc0"> </span><span class="sc10">=</span><span class="sc0"> </span><span class="sc13">require</span><span class="sc0"> </span><span class="sc6">"toy.logger"</span><span class="sc0">
+</span><span class="sc5">local</span><span class="sc0">  </span><span class="sc11">bug</span><span class="sc0"> </span><span class="sc10">=</span><span class="sc0"> </span><span class="sc13">require</span><span class="sc0"> </span><span class="sc6">"toy.debug"</span><span class="sc0">
+
+</span><span class="sc5">local</span><span class="sc0"> </span><span class="sc5">function</span><span class="sc0"> </span><span class="sc11">main</span><span class="sc10">()</span><span class="sc0">
+    </span><span class="sc11">log.print</span><span class="sc10">(</span><span class="sc6">"Hello World"</span><span class="sc10">)</span><span class="sc0">
+</span><span class="sc5">end</span><span class="sc0">
+
+</span><span class="sc2">-- Just a try-catch scope
+</span><span class="sc5">if</span><span class="sc0"> </span><span class="sc11">bug.catch</span><span class="sc10">(</span><span class="sc11">main</span><span class="sc10">)</span><span class="sc0"> </span><span class="sc5">then</span><span class="sc0">
+    </span><span class="sc11">bug.oops</span><span class="sc10">()</span><span class="sc0">
+</span><span class="sc5">end</span><span class="sc0">
+</span></div>
+
+
+
+
+
+
+
+
+
+
+
+
+toy.logger 跟 toy.debug 都是 module 的名稱
+都是設計給<span class="term">player</span>使用的工具
+bug.catch 內部實作有<span class="term">Lua</span>的 xpcall
+也有用到 C++ 的 try-catch
+因此兩種語言的異常狀況都能捕獲
+
+想知道各 module 的用法介紹可以看這個資料夾裡的範例
+<span class="meta">ToyBox/examples/usage/ToyBox/modules/toy</span>
+
+
+
+<span class="sub-title">更多資訊</span><hr><a href="../../player-zh-hant-tw/index.html" target="_blank">player說明文件</a>
+
+
+
+
+
+</pre>
+</body>
+</html>

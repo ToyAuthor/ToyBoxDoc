@@ -1,0 +1,52 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="../../style.css" rel="stylesheet" type="text/css" media="screen" />
+</head>
+<body style="padding:13px">
+<pre>
+
+<a href="../about.html" target="main">🡨</a>
+<span class="title">功能介紹</span><hr class="top">這資料夾裡的範例已經很好的演示了本專案有什麼功能了
+ToyBox/examples/usage/ToyBox/include/toy
+
+下面列舉一些本專案的重要組件
+所有組件都能找到一個標頭檔來當代表
+因此下面介紹也是以標頭檔為標題
+
+
+<span class="sub-title">組件清單</span><hr>&lt;toy/Log.hpp&gt;
+	功能如同 std::printf 跟 std::cout
+	但是使用 UTF-8
+
+&lt;toy/File.hpp&gt;
+	基於 OpenGL 的描繪工具
+
+&lt;toy/Graphics.hpp&gt;
+	※ 目前仍然是在開發階段，非完成品
+
+	一個只基於 OpenGL 的 3D 描繪引擎
+	有整合視窗相關功能
+	相關的公開標頭檔都放在 ToyBox/include/toy/graphics 這個資料夾裡面
+	其中最核心的類別是這個 ToyBox/include/toy/graphics/Root.hpp
+
+&lt;toy/Photo.hpp&gt;
+	相關的公開標頭檔都放在 ToyBox/include/toy/photo 這個資料夾裡面
+	裡面提供了各種圖片修改工具
+	例如裁減圖片、拼裝圖片、改變圖片色調
+
+&lt;toy/Path.hpp&gt;
+	這個是<span class="term">boost filesystem</span>的再包裝
+	增加了對 UTF-8 的支援
+
+&lt;toy/Font.hpp&gt;
+	FreeType2 的 C++ 封裝
+
+
+
+
+
+
+</pre>
+</body>
+</html>
