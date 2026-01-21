@@ -34,7 +34,7 @@ module介面會比C++介面簡單易用，程式碼會很簡潔，
 未來會直接提供`Linux`與`Windows`版本的`player`程式給使用者下載。
 
 ### Step 2: 設置`player`所需要的設定檔
-設定檔的使用方式寫在`ToyBox/docs/for_ai/player/config.md`，
+設定檔的使用方式寫在`ToyBox/docs/for_ai/player_config.md`，
 使用`--help`這樣的指令也可以學到一些。
 
 ### Step 3: 學習使用`player`

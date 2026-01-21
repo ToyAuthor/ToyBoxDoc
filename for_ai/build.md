@@ -32,10 +32,10 @@
 在`ToyBox/cmake/toy_Option.cmake`這邊有著CMake編譯選項，
 請勾選`TOY_ENABLE_SHARED_LIBS`這個選項來建立動態函式庫，
 `ToyBox`早就無法建立靜態函式庫了，未來只有極低機率會修復靜態函式庫選項。
-這份文件`ToyBox/docs/for_ai/build/cmake_option.md`有列出各個選項的解釋，
+這份文件`ToyBox/docs/for_ai/build_cmake_option.md`有列出各個選項的解釋，
 選擇好選項之後，接下來就用CMake去建立makefile這類的文件。
 
 ## 編譯專案
 在`ToyBox/include/toy/CompilerConfig.hpp`有寫著程式碼的編譯選項，
-可參考此文件`ToyBox/docs/for_ai/build/compiler_config.md`的說明來修改，
+可參考此文件`ToyBox/docs/for_ai/build_compiler_config.md`的說明來修改，
 選擇好選項之後，用C++編譯器來執行最後一步。
